@@ -166,7 +166,7 @@ DEPENDENCIES
   ransack_predicate_cont_any_word!
   rspec-rails (= 3.5.2)
   rubocop (= 0.48.1)
-  sqlite3
+  sqlite3 (= 1.3.13)
 
 BUNDLED WITH
    1.13.7

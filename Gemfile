@@ -16,7 +16,9 @@ gemspec
 group :development, :test do
   gem "best_practice_project", "0.0.10", require: false
   gem "factory_girl_rails", "4.8.0"
+  gem "rails", "5.0.2"
   gem "ransack", "1.8.2"
   gem "rspec-rails", "3.5.2"
   gem "rubocop", "0.48.1", require: false
+  gem "sqlite3", "1.3.13"
 end
