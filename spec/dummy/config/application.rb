@@ -1,6 +1,7 @@
 require_relative "boot"
 
 require "rails/all"
+require "action_mailer/railtie"
 
 Bundler.require(*Rails.groups)
 require "ransack_predicate_cont_any_word"
