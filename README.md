@@ -1,8 +1,17 @@
 # RansackPredicateContAnyWord
-Short description and motivation.
+
+This gem adds the "cont_any_word" predicate to Ransack for filtering more natural and human.
 
 ## Usage
-How to use my plugin.
+
+```ruby
+User.ransack(email_cont_any_word: "@example.com test").result.to_sql #=> SELECT "users".* FROM "users" WHERE ("users"."email" LIKE '%@example.com%' AND "users"."email" LIKE '%test%')
+```
+
+It is also possible to search for whole sentences
+```ruby
+User.ransack(encrypted_password_cont_any_word: '"yeah this is my password" password some').result.to_sql #=> SELECT "users".* FROM "users" WHERE ("users"."encrypted_password" LIKE '%yeah this is my password%' AND "users"."encrypted_password" LIKE '%password%' AND "users"."encrypted_password" LIKE '%some%')
+```
 
 ## Installation
 Add this line to your application's Gemfile:
