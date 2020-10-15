@@ -14,11 +14,14 @@ gemspec
 # gem 'byebug', group: [:development, :test]
 
 group :development, :test do
-  gem "best_practice_project", "0.0.11", require: false
-  gem "factory_girl_rails", "4.9.0"
-  gem "rails", "5.0.2"
-  gem "ransack", "2.3.0"
-  gem "rspec-rails", "4.0.1"
-  gem "rubocop", "0.48.1", require: false
+  gem "best_practice_project", require: false
+  gem "factory_bot_rails"
+  gem "rails"
+  gem "ransack"
+  gem "rspec-rails"
+  gem "rubocop", require: false
+  gem "rubocop-performance", require: false
+  gem "rubocop-rails", require: false
+  gem "rubocop-rspec", require: false
   gem "sqlite3", "1.3.13"
 end
