@@ -20,5 +20,5 @@ group :development, :test do
   gem "ransack", "1.8.2"
   gem "rspec-rails", "4.0.1"
   gem "rubocop", "0.48.1", require: false
-  gem "sqlite3", "1.3.13"
+  gem "sqlite3", "1.4.2"
 end
