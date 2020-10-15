@@ -18,7 +18,7 @@ group :development, :test do
   gem "factory_girl_rails", "4.8.0"
   gem "rails", "5.0.2"
   gem "ransack", "1.8.2"
-  gem "rspec-rails", "3.5.2"
+  gem "rspec-rails", "4.0.1"
   gem "rubocop", "0.48.1", require: false
   gem "sqlite3", "1.3.13"
 end
