@@ -47,7 +47,7 @@ GEM
     ast (2.3.0)
     auto_autoloader (0.0.5)
       string-cases
-    best_practice_project (0.0.10)
+    best_practice_project (0.0.11)
       auto_autoloader (>= 0.0.5)
     builder (3.2.4)
     concurrent-ruby (1.1.7)
@@ -162,7 +162,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  best_practice_project (= 0.0.10)
+  best_practice_project (= 0.0.11)
   factory_girl_rails (= 4.8.0)
   rails (= 5.0.2)
   ransack (= 1.8.2)
