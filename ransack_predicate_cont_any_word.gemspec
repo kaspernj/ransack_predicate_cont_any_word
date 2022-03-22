@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.name = "ransack_predicate_cont_any_word"
   s.version = RansackPredicateContAnyWord::VERSION
   s.authors = ["kaspernj"]
-  s.email = ["kaspernj@gmail.com"]
+  s.email = ["k@spernj.org"]
   s.homepage = "https://www.github.com/kaspernj/ransack_predicate_cont_any_word"
   s.summary = "'cont_any_word' predicate for Ransack."
   s.description = "'cont_any_word' predicate for Ransack."
