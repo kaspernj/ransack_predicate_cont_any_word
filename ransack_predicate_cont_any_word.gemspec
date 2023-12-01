@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.summary = "'cont_any_word' predicate for Ransack."
   s.description = "'cont_any_word' predicate for Ransack."
   s.license = "MIT"
-  s.required_ruby_version = ">= 2.6"
+  s.required_ruby_version = ">= 2.7"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 end
