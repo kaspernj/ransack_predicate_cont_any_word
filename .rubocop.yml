@@ -12,10 +12,16 @@ require:
   - rubocop-rails
   - rubocop-rspec
 
+FactoryBot/ConsistentParenthesesStyle:
+  Enabled: false
+
 Layout/AccessModifierIndentation:
   EnforcedStyle: outdent
 
 Layout/EmptyLines:
+  Enabled: false
+
+Layout/LineEndStringConcatenationIndentation:
   Enabled: false
 
 Layout/LineLength:
