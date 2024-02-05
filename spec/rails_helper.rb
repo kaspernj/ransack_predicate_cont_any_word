@@ -24,6 +24,7 @@ require "rspec/rails"
 
 Dir["spec/factories/**/*.rb"].each { |f| require_relative "../#{f}" }
 
+require "ransack_predicate_cont_any_word"
 require "sqlite3"
 
 # Checks for pending migration and applies them before tests are run.
@@ -34,7 +35,7 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.fixture_paths = [Rails.root.join("spec/fixtures")]
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
