@@ -31,6 +31,9 @@ builds:
     script:
       - bundle exec appraisal "ruby 3" rspec
   build_5:
+    environment:
+      BUNDLE_GEMFILE: /home/build/project/gemfiles/ruby_3.gemfile
+      RUBY_VERSION: 3.2.2
     name: Linters
     script:
-      - bundle exec rake best_practice_project:run
+      - bundle exec appraisal "ruby 3" rake best_practice_project:run
