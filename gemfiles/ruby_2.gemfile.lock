@@ -187,7 +187,7 @@ GEM
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
     rake (13.1.0)
-    ransack (4.1.1)
+    ransack (4.0.0)
       activerecord (>= 6.1.5)
       activesupport (>= 6.1.5)
       i18n
@@ -270,7 +270,7 @@ DEPENDENCIES
   factory_bot_rails
   nokogiri (= 1.15.5)
   rails
-  ransack
+  ransack (= 4.0.0)
   ransack_predicate_cont_any_word!
   rspec-rails
   rubocop

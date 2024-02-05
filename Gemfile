@@ -18,7 +18,6 @@ group :development, :test do
   gem "best_practice_project", require: false
   gem "factory_bot_rails"
   gem "rails"
-  gem "ransack"
   gem "rspec-rails"
   gem "rubocop", require: false
   gem "rubocop-performance", require: false

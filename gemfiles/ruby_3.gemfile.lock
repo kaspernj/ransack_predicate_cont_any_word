@@ -270,7 +270,7 @@ DEPENDENCIES
   factory_bot_rails
   nokogiri (= 1.16.2)
   rails
-  ransack
+  ransack (= 4.1.1)
   ransack_predicate_cont_any_word!
   rspec-rails
   rubocop
