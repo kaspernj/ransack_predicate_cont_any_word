@@ -24,6 +24,7 @@ require "rspec/rails"
 
 Dir["spec/factories/**/*.rb"].each { |f| require_relative "../#{f}" }
 
+require "ransack_predicate_cont_any_word"
 require "sqlite3"
 
 # Checks for pending migration and applies them before tests are run.
