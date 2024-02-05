@@ -14,6 +14,7 @@ gemspec
 # gem 'byebug', group: [:development, :test]
 
 group :development, :test do
+  gem "appraisal", require: false
   gem "best_practice_project", require: false
   gem "factory_bot_rails"
   gem "rails"
@@ -23,5 +24,4 @@ group :development, :test do
   gem "rubocop-performance", require: false
   gem "rubocop-rails", require: false
   gem "rubocop-rspec", require: false
-  gem "sqlite3"
 end
