@@ -8,6 +8,7 @@ AllCops:
   TargetRubyVersion: 2.7
 
 require:
+  - rubocop-factory_bot
   - rubocop-performance
   - rubocop-rails
   - rubocop-rspec
