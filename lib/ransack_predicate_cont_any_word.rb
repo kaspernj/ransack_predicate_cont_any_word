@@ -14,8 +14,6 @@ end
 
 module RansackPredicateContAnyWord
   module CrossColumnContAnyWordPatch
-  private
-
     def arel_predicate
       return super unless cross_column_cont_any_word?
 
@@ -27,6 +25,8 @@ module RansackPredicateContAnyWord
 
       grouped_predicates.reduce(:and)
     end
+
+  private
 
     def cross_column_cont_any_word?
       predicate_name == "cont_any_word" &&
