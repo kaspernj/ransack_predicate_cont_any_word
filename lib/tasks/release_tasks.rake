@@ -25,15 +25,32 @@ namespace :release do
     abort "Built gem file not found: #{gem_file}" unless File.exist?(gem_file)
 
     status = nil
-    PTY.spawn("gem", "push", gem_file) do |stdout, _stdin, pid|
-      begin
-        loop do
-          print stdout.readpartial(1024)
+    PTY.spawn("gem", "push", gem_file) do |stdout, stdin, pid|
+      output_thread = Thread.new do
+        begin
+          loop do
+            print stdout.readpartial(1024)
+          end
+        rescue EOFError, Errno::EIO
         end
-      rescue EOFError, Errno::EIO
-      ensure
+      end
+
+      input_thread = Thread.new do
+        begin
+          loop do
+            stdin.write($stdin.readpartial(1024))
+          end
+        rescue EOFError, Errno::EIO
+          stdin.close unless stdin.closed?
+        end
+      end
+
+      begin
         Process.wait(pid)
         status = $?.exitstatus
+      ensure
+        output_thread.join
+        input_thread.kill
       end
     end
 
