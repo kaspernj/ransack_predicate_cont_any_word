@@ -20,4 +20,14 @@ describe RansackPredicateContAnyWord do
 
     expect(query.to_a).to eq [user]
   end
+
+  it "allows words to match across different columns for OR conditions" do
+    query = User.ransack(email_or_encrypted_password_cont_any_word: "@example.com encrypted_password").result
+
+    expect(query.to_sql).to eq 'SELECT "users".* FROM "users" WHERE (("users"."email" LIKE \'%@example.com%\' OR ' \
+      '"users"."encrypted_password" LIKE \'%@example.com%\') AND ("users"."email" LIKE \'%encrypted_password%\' OR ' \
+      '"users"."encrypted_password" LIKE \'%encrypted_password%\'))'
+
+    expect(query.to_a).to eq [user]
+  end
 end

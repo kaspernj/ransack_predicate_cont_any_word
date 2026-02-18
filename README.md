@@ -13,6 +13,12 @@ It is also possible to search for whole sentences
 User.ransack(encrypted_password_cont_any_word: '"yeah this is my password" password some').result.to_sql #=> SELECT "users".* FROM "users" WHERE ("users"."encrypted_password" LIKE '%yeah this is my password%' AND "users"."encrypted_password" LIKE '%password%' AND "users"."encrypted_password" LIKE '%some%')
 ```
 
+For OR-combined attributes, each word may match in different columns:
+```ruby
+User.ransack(email_or_encrypted_password_cont_any_word: "@example.com encrypted_password").result.to_sql
+#=> SELECT "users".* FROM "users" WHERE (("users"."email" LIKE '%@example.com%' OR "users"."encrypted_password" LIKE '%@example.com%') AND ("users"."email" LIKE '%encrypted_password%' OR "users"."encrypted_password" LIKE '%encrypted_password%'))
+```
+
 ## Installation
 Add this line to your application's Gemfile:
 
