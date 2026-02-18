@@ -12,35 +12,33 @@ Ransack.configure do |config|
   )
 end
 
-module RansackPredicateContAnyWord
-  module CrossColumnContAnyWordPatch
-    def arel_predicate
-      return super unless cross_column_cont_any_word?
+module RansackPredicateContAnyWord::CrossColumnContAnyWordPatch
+  def arel_predicate
+    return super unless cross_column_cont_any_word?
 
-      grouped_predicates = cont_any_word_tokens.map do |token|
-        attributes
-          .map { |attribute| attr_value_for_attribute(attribute).matches(Arel::Nodes.build_quoted(token)) }
-          .reduce(:or)
-      end
-
-      grouped_predicates.reduce(:and)
+    grouped_predicates = cont_any_word_tokens.map do |token|
+      attributes
+        .map { |attribute| attr_value_for_attribute(attribute).matches(Arel::Nodes.build_quoted(token)) }
+        .reduce(:or)
     end
 
-  private
+    grouped_predicates.reduce(:and)
+  end
 
-    def cross_column_cont_any_word?
-      predicate_name == "cont_any_word" &&
-        combinator == Ransack::Constants::OR &&
-        attributes.length > 1 &&
-        cont_any_word_tokens.length > 1
-    end
+private
 
-    def cont_any_word_tokens
-      @cont_any_word_tokens ||= begin
-        tokens = formatted_values_for_attribute(attributes.first)
-        tokens.is_a?(Array) ? tokens : [tokens].compact
-      end
-    end
+  def cross_column_cont_any_word?
+    predicate_name == "cont_any_word" &&
+      combinator == Ransack::Constants::OR &&
+      attributes.length > 1 &&
+      cont_any_word_tokens.length > 1
+  end
+
+  def cont_any_word_tokens
+    @cont_any_word_tokens ||= validated_values
+      .map { |value| value.cast(predicate.type).to_s }
+      .flat_map { |value| Array(predicate.format(value)) }
+      .compact
   end
 end
 
