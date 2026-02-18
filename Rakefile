@@ -29,3 +29,4 @@ task default: :test
 
 require "best_practice_project"
 BestPracticeProject.load_tasks
+Dir["lib/tasks/**/*.rake"].sort.each { |file| import file }
