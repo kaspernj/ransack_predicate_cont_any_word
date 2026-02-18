@@ -11,3 +11,35 @@ Ransack.configure do |config|
     type: :string
   )
 end
+
+module RansackPredicateContAnyWord::CrossColumnContAnyWordPatch
+  def arel_predicate
+    return super unless cross_column_cont_any_word?
+
+    grouped_predicates = cont_any_word_tokens.map do |token|
+      attributes
+        .map { |attribute| attr_value_for_attribute(attribute).matches(Arel::Nodes.build_quoted(token)) }
+        .reduce(:or)
+    end
+
+    grouped_predicates.reduce(:and)
+  end
+
+private
+
+  def cross_column_cont_any_word?
+    predicate_name == "cont_any_word" &&
+      combinator == Ransack::Constants::OR &&
+      attributes.length > 1 &&
+      cont_any_word_tokens.length > 1
+  end
+
+  def cont_any_word_tokens
+    @cont_any_word_tokens ||= validated_values
+      .map { |value| value.cast(predicate.type).to_s }
+      .flat_map { |value| Array(predicate.format(value)) }
+      .compact
+  end
+end
+
+Ransack::Nodes::Condition.prepend(RansackPredicateContAnyWord::CrossColumnContAnyWordPatch)

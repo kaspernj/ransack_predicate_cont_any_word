@@ -2,6 +2,12 @@ require "rails_helper"
 
 describe RansackPredicateContAnyWord do
   let!(:user) { create :user, encrypted_password: "some password yeah this is my password", email: "test@example.com" }
+  let(:email_token_sql_fragment) do
+    '("users"."email" LIKE \'%@example.com%\' OR "users"."encrypted_password" LIKE \'%@example.com%\')'
+  end
+  let(:password_token_sql_fragment) do
+    '("users"."email" LIKE \'%password%\' OR "users"."encrypted_password" LIKE \'%password%\')'
+  end
 
   it "generates the correct sql" do
     query = User.ransack(email_cont_any_word: "@example.com test").result
@@ -18,6 +24,13 @@ describe RansackPredicateContAnyWord do
       '\'%yeah this is my password%\' AND "users"."encrypted_password" LIKE \'%password%\' AND ' \
       '"users"."encrypted_password" LIKE \'%some%\')'
 
+    expect(query.to_a).to eq [user]
+  end
+
+  it "allows words to match across different columns for OR conditions" do
+    query = User.ransack(email_or_encrypted_password_cont_any_word: "@example.com password").result
+    sql = query.to_sql
+    expect([sql.include?(email_token_sql_fragment), sql.include?(password_token_sql_fragment), sql.include?(" AND ")]).to eq [true, true, true]
     expect(query.to_a).to eq [user]
   end
 end
